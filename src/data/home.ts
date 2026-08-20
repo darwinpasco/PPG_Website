@@ -35,7 +35,7 @@ export const homeContent = {
       'Parking management, cashierless payment options, parking systems, equipment, monitoring, and technical services for property owners.',
   },
   navigation: [
-    { label: 'About', href: '/#about' },
+    { label: 'About', href: '/about/' },
     { label: 'Our Companies', href: '/companies/' },
     { label: 'Solutions', href: '/solutions/' },
     { label: 'Industries', href: '/industries/' },
