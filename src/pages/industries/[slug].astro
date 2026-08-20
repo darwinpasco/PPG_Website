@@ -1,0 +1,98 @@
+---
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SiteAssessmentCta from '../../components/SiteAssessmentCta.astro';
+import { homeContent } from '../../data/home';
+import { industries, type Industry } from '../../data/industries';
+import { getSolution, type Solution } from '../../data/solutions';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return industries.map((industry) => ({
+    params: { slug: industry.slug },
+    props: { industry },
+  }));
+}
+
+interface Props {
+  industry: Industry;
+}
+
+const { industry } = Astro.props;
+const relevantSolutions = industry.relevantSolutions
+  .map((item) => ({ ...item, solution: getSolution(item.slug) }))
+  .filter((item): item is typeof item & { solution: Solution } => item.solution !== undefined);
+---
+
+<BaseLayout
+  title={industry.seoTitle}
+  description={industry.seoDescription}
+  navigation={homeContent.navigation}
+>
+  <section class="page-hero page-hero--detail" aria-labelledby="industry-title">
+    <div class="shell">
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Industries', href: '/industries/' },
+          { label: industry.name },
+        ]}
+      />
+      <div class="industry-detail-hero__content">
+        <p class="eyebrow eyebrow--light">Property type</p>
+        <h1 id="industry-title">{industry.name}</h1>
+        <p class="page-hero__introduction">{industry.introduction}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="operational-priorities-title">
+    <div class="shell detail-grid">
+      <div class="detail-heading">
+        <p class="eyebrow">Parking operation</p>
+        <h2 id="operational-priorities-title">Operational priorities</h2>
+      </div>
+      <ol class="numbered-list industry-priority-list">
+        {industry.operationalPriorities.map((priority, index) => (
+          <li>
+            <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <p>{priority}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="assessment-points-title">
+    <div class="shell detail-grid">
+      <div class="detail-heading">
+        <p class="eyebrow">Site assessment</p>
+        <h2 id="assessment-points-title">What to assess</h2>
+      </div>
+      <ul class="industry-assessment-list">
+        {industry.assessmentPoints.map((point) => <li>{point}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--muted" aria-labelledby="relevant-services-title">
+    <div class="shell">
+      <div class="content-heading">
+        <p class="eyebrow">Pro Parking Group solutions</p>
+        <h2 id="relevant-services-title">Relevant parking services</h2>
+      </div>
+      <ul class="industry-service-list">
+        {relevantSolutions.map(({ context, solution }) => (
+          <li>
+            <h3>{solution.name}</h3>
+            <p>{context}</p>
+            <a href={`/solutions/${solution.slug}/`}>
+              View {solution.name} <span aria-hidden="true">&#8594;</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <SiteAssessmentCta />
+</BaseLayout>

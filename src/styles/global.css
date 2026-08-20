@@ -590,6 +590,18 @@ h3 {
   font-size: 0.72rem;
 }
 
+.industry-list a {
+  color: var(--color-green-950);
+  text-decoration-color: transparent;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.25em;
+}
+
+.industry-list a:hover {
+  color: var(--color-green-800);
+  text-decoration-color: var(--color-signal-dark);
+}
+
 .assessment__status {
   display: flex;
   gap: 0.7rem;
@@ -1221,6 +1233,127 @@ h3 {
   text-decoration-color: var(--color-signal-dark);
 }
 
+.industries-overview-hero__content,
+.industry-detail-hero__content {
+  max-width: 62rem;
+}
+
+.industries-overview .content-heading {
+  max-width: 48rem;
+}
+
+.industry-overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--color-line);
+  border-left: 1px solid var(--color-line);
+}
+
+.industry-overview-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 24rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border-right: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-white);
+}
+
+.industry-overview-card__index {
+  margin-bottom: clamp(2rem, 5vw, 4rem);
+  color: var(--color-signal-dark);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.industry-overview-card h3 {
+  max-width: 24ch;
+  margin-bottom: 1rem;
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+}
+
+.industry-overview-card p {
+  max-width: 38rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-ink-soft);
+}
+
+.industry-overview-card__link {
+  display: inline-flex;
+  gap: 0.65rem;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 2.75rem;
+  margin-top: auto;
+  color: var(--color-green-800);
+  font-weight: 700;
+  text-underline-offset: 0.25em;
+}
+
+.industry-assessment-list,
+.industry-service-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.industry-assessment-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border-top: 1px solid var(--color-line);
+  border-left: 1px solid var(--color-line);
+}
+
+.industry-assessment-list li {
+  min-height: 9rem;
+  padding: 1.5rem;
+  border-right: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-white);
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+.industry-service-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.industry-service-list li {
+  display: flex;
+  flex-direction: column;
+  min-height: 19rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border: 1px solid var(--color-line);
+  border-top: 0.35rem solid var(--color-green-800);
+  background: var(--color-white);
+}
+
+.industry-service-list h3 {
+  max-width: 22ch;
+  margin-bottom: 1rem;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+}
+
+.industry-service-list p {
+  max-width: 38rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-ink-soft);
+}
+
+.industry-service-list a {
+  display: inline-flex;
+  gap: 0.65rem;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 2.75rem;
+  margin-top: auto;
+  color: var(--color-green-800);
+  font-weight: 700;
+  text-underline-offset: 0.25em;
+}
+
 @media (max-width: 1050px) {
   .desktop-nav,
   .header-cta {
@@ -1306,7 +1439,8 @@ h3 {
 
   .solutions-card-grid,
   .equipment-grid,
-  .company-profile-grid {
+  .company-profile-grid,
+  .industry-overview-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1354,8 +1488,15 @@ h3 {
   .company-grid,
   .journey-grid,
   .company-profile-grid,
-  .company-solution-list {
+  .company-solution-list,
+  .industry-overview-grid,
+  .industry-assessment-list,
+  .industry-service-list {
     grid-template-columns: 1fr;
+  }
+
+  .industry-overview-card {
+    min-height: 22rem;
   }
 
   .company-card {

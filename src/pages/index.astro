@@ -132,7 +132,10 @@ const companyLogos = [
       />
       <ul class="industry-list" aria-label="Property types with different parking requirements">
         {homeContent.industries.map((industry, index) => (
-          <li><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{industry}</li>
+          <li>
+            <span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+            <a href={industry.href}>{industry.name}</a>
+          </li>
         ))}
       </ul>
     </div>
