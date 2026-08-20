@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /
+
+# Working preview only. Replace after production-domain and indexing approval.
