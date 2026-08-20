@@ -2,7 +2,7 @@
 
 Static-first corporate website for Pro Parking Group, representing Professional Parking Management Corporation (Pro-P) and Park Secure Management Corporation (Park Secure) with equal prominence.
 
-This working foundation contains the responsive global shell, the Home page, and the Solutions content slice. It is based on the approved Business Requirements Document in `docs/Pro_Parking_Group_Website_BRD_v1.0.md`.
+This working foundation contains the responsive global shell, the Home page, the Solutions content slice, and the Our Companies content slice. It is based on the approved Business Requirements Document in `docs/Pro_Parking_Group_Website_BRD_v1.0.md`.
 
 ## Requirements baseline
 
@@ -61,8 +61,10 @@ The preview server prints its local URL, normally `http://localhost:4321/`.
 
 - `src/data/home.ts`: Git-managed Home-page content, navigation, company summaries, solution areas, industries, and pending-content states
 - `src/data/solutions.ts`: typed content for the Solutions overview and five solution-detail pages
+- `src/data/companies.ts`: typed content for the Our Companies overview and two company-detail pages
 - `src/pages/index.astro`: Home-page section composition
 - `src/pages/solutions/`: statically generated Solutions overview and reusable detail route
+- `src/pages/companies/`: statically generated company overview and reusable detail route
 - `src/components/`: reusable global shell and section components
 - `src/assets/brand/`: selected local company marks used by the website
 - `src/assets/images/`: selected local editorial and equipment images
@@ -84,6 +86,7 @@ Client logos, property logos, project photographs, testimonials, and other third
 - Responsive header, navigation, footer, and accessibility baseline
 - Home page with group, company, solution, industry, support, careers, and site-assessment-intent sections
 - Solutions overview and five statically generated solution-detail pages
+- Our Companies overview and two statically generated company-detail pages
 - Balanced local-review equipment presentation on the Parking Systems and Equipment page
 - Selective local asset integration with responsive image generation
 - Git-managed structured content
@@ -91,7 +94,7 @@ Client logos, property logos, project photographs, testimonials, and other third
 
 ## Deferred capabilities
 
-The remaining sitemap, dedicated company pages, portfolio records, forms, delivery integrations, CRM, ticketing, applicant tracking, CMS, analytics provider, production domain, hosting configuration, and deployment remain deferred.
+The remaining sitemap, portfolio records, forms, delivery integrations, CRM, ticketing, applicant tracking, CMS, analytics provider, production domain, hosting configuration, and deployment remain deferred.
 
 Future parking-facility microsites are also deferred. The approved direction uses shared templates, structured facility and related-service content, and stable routes under `/parking/{site-slug}/` without separate codebases or deployments per facility. No `/parking/` route, facility record, PITX page, or shuttle service page is implemented in the current repository state.
 

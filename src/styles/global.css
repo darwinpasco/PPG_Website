@@ -422,6 +422,7 @@ h3 {
 }
 
 .company-card {
+  position: relative;
   display: grid;
   grid-template-rows: auto auto auto auto 1fr auto;
   min-height: 31rem;
@@ -477,6 +478,31 @@ h3 {
 
 .company-card h3 {
   max-width: 20ch;
+}
+
+.company-card__profile-link {
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+}
+
+.company-card__profile-link::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+}
+
+.company-card:hover {
+  border-color: var(--color-green-800);
+}
+
+.company-card:focus-within {
+  outline: 3px solid var(--color-signal);
+  outline-offset: 3px;
+}
+
+.company-card__profile-link:hover {
+  color: var(--color-green-800);
+  text-decoration-color: var(--color-signal-dark);
 }
 
 .company-card > p:not(.company-card__short-name) {
@@ -1045,6 +1071,156 @@ h3 {
   scroll-margin-top: 0;
 }
 
+.companies-hero__content {
+  max-width: 62rem;
+}
+
+.companies-overview .content-heading {
+  max-width: 54rem;
+}
+
+.company-profile-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.company-profile-card {
+  display: flex;
+  flex-direction: column;
+  min-height: 34rem;
+  padding: clamp(1.5rem, 4vw, 3rem);
+  border: 1px solid var(--color-line);
+  border-top: 0.45rem solid var(--color-green-800);
+  background: var(--color-white);
+}
+
+.company-profile-card__logo,
+.company-detail-hero__logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid var(--color-line);
+  background: var(--color-white);
+}
+
+.company-profile-card__logo {
+  height: 11rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+}
+
+.company-profile-card__logo img,
+.company-detail-hero__logo img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 8rem;
+  object-fit: contain;
+}
+
+.company-logo--pro-p img {
+  max-width: 13rem;
+}
+
+.company-logo--park-secure img {
+  max-width: 9rem;
+}
+
+.company-profile-card__short-name,
+.company-detail-hero__short-name {
+  color: var(--color-signal-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.company-profile-card h3 {
+  max-width: 24ch;
+  font-size: clamp(1.55rem, 2.4vw, 2.15rem);
+}
+
+.company-profile-card > p:not(.company-profile-card__short-name) {
+  color: var(--color-ink-soft);
+}
+
+.company-profile-card__link {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+  align-self: flex-start;
+  min-height: 2.75rem;
+  margin-top: auto;
+  color: var(--color-green-800);
+  font-weight: 700;
+  text-underline-offset: 0.25em;
+}
+
+.companies-solutions-link .text-link {
+  margin-top: 1.5rem;
+}
+
+.company-detail-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.35fr) minmax(19rem, 0.65fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: center;
+}
+
+.company-detail-hero__content {
+  max-width: 58rem;
+}
+
+.company-detail-hero__short-name {
+  margin-bottom: 1rem;
+  color: var(--color-signal);
+}
+
+.company-detail-hero__logo {
+  width: 100%;
+  min-height: 18rem;
+  padding: 2rem;
+}
+
+.company-role-copy {
+  max-width: 46rem;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+}
+
+.company-solution-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.company-solution-list li {
+  border: 1px solid var(--color-line);
+  border-left: 0.35rem solid var(--color-green-800);
+  background: var(--color-white);
+}
+
+.company-solution-list a {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  min-height: 100%;
+  padding: 1.25rem;
+  color: var(--color-green-950);
+  font-weight: 700;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+}
+
+.company-solution-list a:hover {
+  color: var(--color-green-800);
+  text-decoration-color: var(--color-signal-dark);
+}
+
 @media (max-width: 1050px) {
   .desktop-nav,
   .header-cta {
@@ -1129,7 +1305,8 @@ h3 {
   }
 
   .solutions-card-grid,
-  .equipment-grid {
+  .equipment-grid,
+  .company-profile-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1154,6 +1331,10 @@ h3 {
     grid-template-columns: 1fr;
   }
 
+  .company-detail-hero__grid {
+    grid-template-columns: 1fr;
+  }
+
   .hero__grid {
     gap: 3.5rem;
     min-height: auto;
@@ -1171,7 +1352,9 @@ h3 {
   }
 
   .company-grid,
-  .journey-grid {
+  .journey-grid,
+  .company-profile-grid,
+  .company-solution-list {
     grid-template-columns: 1fr;
   }
 
@@ -1217,6 +1400,14 @@ h3 {
 
   .equipment-card__image {
     aspect-ratio: 4 / 3;
+  }
+
+  .company-profile-card {
+    min-height: 34rem;
+  }
+
+  .company-detail-hero__logo {
+    min-height: 15rem;
   }
 }
 

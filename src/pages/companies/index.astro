@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SiteAssessmentCta from '../../components/SiteAssessmentCta.astro';
+import { companies, companiesOverview } from '../../data/companies';
+import { homeContent } from '../../data/home';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+---
+
+<BaseLayout
+  title={companiesOverview.title}
+  description={companiesOverview.description}
+  navigation={homeContent.navigation}
+>
+  <section class="page-hero companies-hero" aria-labelledby="companies-overview-title">
+    <div class="shell">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Our Companies' }]} />
+      <div class="companies-hero__content">
+        <p class="eyebrow eyebrow--light">Pro Parking Group</p>
+        <h1 id="companies-overview-title">{companiesOverview.heading}</h1>
+        <p class="page-hero__introduction">{companiesOverview.introduction}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section companies-overview" aria-labelledby="company-profiles-title">
+    <div class="shell">
+      <div class="content-heading">
+        <h2 id="company-profiles-title">Company profiles</h2>
+      </div>
+
+      <div class="company-profile-grid">
+        {companies.map((company) => (
+          <article class="company-profile-card">
+            <div class:list={['company-profile-card__logo', `company-logo--${company.slug}`]}>
+              <Image
+                src={company.logo}
+                alt=""
+                widths={[160, 240, 320]}
+                sizes="(max-width: 760px) 55vw, 240px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <p class="company-profile-card__short-name">{company.shortName}</p>
+            <h3>{company.legalName}</h3>
+            <p>{company.overviewDescription}</p>
+            <a class="company-profile-card__link" href={`/companies/${company.slug}/`}>
+              View the {company.shortName} profile <span aria-hidden="true">&#8594;</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper companies-solutions-link" aria-labelledby="companies-solutions-title">
+    <div class="shell solutions-fit__grid">
+      <div>
+        <p class="eyebrow">Group solutions</p>
+        <h2 id="companies-solutions-title">Parking services for property operations</h2>
+      </div>
+      <div>
+        <p>
+          Pro Parking Group provides parking operations, digital payment channels, parking systems and
+          equipment, monitoring and reporting, and consultancy and technical services.
+        </p>
+        <a class="text-link" href="/solutions/">
+          View all parking solutions <span aria-hidden="true">&#8594;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <SiteAssessmentCta />
+</BaseLayout>

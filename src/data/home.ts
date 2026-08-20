@@ -7,6 +7,7 @@ export interface CompanySummary {
   shortName: string;
   legalName: string;
   description: string;
+  href: `/companies/${string}/`;
 }
 
 export interface SolutionSummary {
@@ -30,7 +31,7 @@ export const homeContent = {
   },
   navigation: [
     { label: 'About', href: '/#about' },
-    { label: 'Our Companies', href: '/#companies' },
+    { label: 'Our Companies', href: '/companies/' },
     { label: 'Solutions', href: '/solutions/' },
     { label: 'Industries', href: '/#industries' },
     { label: 'Careers', href: '/#careers' },
@@ -58,11 +59,13 @@ export const homeContent = {
       shortName: 'Pro-P',
       legalName: 'Professional Parking Management Corporation',
       description: 'A separate legal operating company within Pro Parking Group.',
+      href: '/companies/pro-p/',
     },
     {
       shortName: 'Park Secure',
       legalName: 'Park Secure Management Corporation',
       description: 'A separate legal operating company within Pro Parking Group.',
+      href: '/companies/park-secure/',
     },
   ] satisfies CompanySummary[],
   solutions: [
