@@ -1,6 +1,6 @@
 export interface NavigationItem {
   label: string;
-  href: `#${string}`;
+  href: string;
 }
 
 export interface CompanySummary {
@@ -12,6 +12,7 @@ export interface CompanySummary {
 export interface SolutionSummary {
   title: string;
   description: string;
+  href: `/solutions/${string}/`;
 }
 
 export interface PortfolioItem {
@@ -28,12 +29,12 @@ export const homeContent = {
       'Parking management, cashierless payment options, parking systems, equipment, monitoring, and technical services for property owners.',
   },
   navigation: [
-    { label: 'About', href: '#about' },
-    { label: 'Our Companies', href: '#companies' },
-    { label: 'Solutions', href: '#solutions' },
-    { label: 'Industries', href: '#industries' },
-    { label: 'Careers', href: '#careers' },
-    { label: 'Support', href: '#support' },
+    { label: 'About', href: '/#about' },
+    { label: 'Our Companies', href: '/#companies' },
+    { label: 'Solutions', href: '/solutions/' },
+    { label: 'Industries', href: '/#industries' },
+    { label: 'Careers', href: '/#careers' },
+    { label: 'Support', href: '/#support' },
   ] satisfies NavigationItem[],
   hero: {
     eyebrow: 'Parking management and technology',
@@ -69,26 +70,31 @@ export const homeContent = {
       title: 'Parking Management and Operations',
       description:
         'Day-to-day site operations, staffing, traffic management, customer assistance, and operating controls for parking facilities.',
+      href: '/solutions/parking-management-operations/',
     },
     {
       title: 'Cashierless Parking and Digital Payments',
       description:
         'Payment options that reduce dependence on cashier lanes while preserving assisted and continuity processes when needed.',
+      href: '/solutions/cashierless-parking-digital-payments/',
     },
     {
       title: 'Parking Systems and Equipment',
       description:
         'Selection, deployment, integration, and support for barriers, entry and exit devices, payment terminals, cameras, and related parking systems.',
+      href: '/solutions/parking-systems-equipment/',
     },
     {
       title: 'Command Center and Revenue Intelligence',
       description:
         'Central monitoring and reporting for site activity, equipment status, payments, and operating exceptions.',
+      href: '/solutions/command-center-revenue-intelligence/',
     },
     {
       title: 'Consultancy and Technical Services',
       description:
         'Operational assessments, solution design, integration planning, and technical support for new and existing parking facilities.',
+      href: '/solutions/consultancy-technical-services/',
     },
   ] satisfies SolutionSummary[],
   industries: [

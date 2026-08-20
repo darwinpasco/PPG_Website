@@ -1,0 +1,72 @@
+---
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SiteAssessmentCta from '../../components/SiteAssessmentCta.astro';
+import SolutionCard from '../../components/SolutionCard.astro';
+import { homeContent } from '../../data/home';
+import { solutions, solutionsMeta } from '../../data/solutions';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const operatingElements = [
+  'Site operations and people',
+  'Payment channels',
+  'Parking systems and equipment',
+  'Monitoring and reporting',
+  'Assessment and technical planning',
+] as const;
+---
+
+<BaseLayout
+  title={solutionsMeta.title}
+  description={solutionsMeta.description}
+  navigation={homeContent.navigation}
+>
+  <section class="page-hero" aria-labelledby="solutions-overview-title">
+    <div class="shell">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Solutions' }]} />
+      <div class="page-hero__grid">
+        <div>
+          <p class="eyebrow eyebrow--light">{solutionsMeta.eyebrow}</p>
+          <h1 id="solutions-overview-title">{solutionsMeta.heading}</h1>
+          <p class="page-hero__introduction">{solutionsMeta.introduction}</p>
+        </div>
+        <div class="operating-elements" aria-label="Areas covered by Pro Parking Group solutions">
+          <p>Parking requirements may involve</p>
+          <ul>
+            {operatingElements.map((element) => <li>{element}</li>)}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section solutions-overview" aria-labelledby="solutions-list-title">
+    <div class="shell">
+      <div class="solutions-overview__heading">
+        <p class="eyebrow">Five areas of support</p>
+        <h2 id="solutions-list-title">Choose the capabilities that fit the property.</h2>
+        <p>{solutionsMeta.selectionGuidance}</p>
+      </div>
+      <div class="solutions-card-grid">
+        {solutions.map((solution, index) => <SolutionCard solution={solution} index={index} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper solutions-fit" aria-labelledby="solutions-fit-title">
+    <div class="shell solutions-fit__grid">
+      <div>
+        <p class="eyebrow">Selecting the scope</p>
+        <h2 id="solutions-fit-title">Start with the current parking operation.</h2>
+      </div>
+      <div>
+        <p>
+          A site assessment reviews the property, traffic patterns, payment processes, existing equipment,
+          operating concerns, and implementation priorities. The resulting scope may combine several solutions
+          or focus on one immediate requirement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <SiteAssessmentCta />
+</BaseLayout>

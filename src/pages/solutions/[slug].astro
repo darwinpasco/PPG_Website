@@ -1,0 +1,156 @@
+---
+import { Image } from 'astro:assets';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SiteAssessmentCta from '../../components/SiteAssessmentCta.astro';
+import SolutionCard from '../../components/SolutionCard.astro';
+import { homeContent } from '../../data/home';
+import { getSolution, solutions, type Solution } from '../../data/solutions';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return solutions.map((solution) => ({
+    params: { slug: solution.slug },
+    props: { solution },
+  }));
+}
+
+interface Props {
+  solution: Solution;
+}
+
+const { solution } = Astro.props;
+const relatedSolutions = solution.relatedSolutions
+  .map((slug) => getSolution(slug))
+  .filter((item): item is Solution => item !== undefined);
+---
+
+<BaseLayout
+  title={solution.seoTitle}
+  description={solution.seoDescription}
+  navigation={homeContent.navigation}
+>
+  <section class="page-hero page-hero--detail" aria-labelledby="solution-title">
+    <div class="shell">
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Solutions', href: '/solutions/' },
+          { label: solution.name },
+        ]}
+      />
+      <div class="solution-hero__content">
+        <p class="eyebrow eyebrow--light">Solution</p>
+        <h1 id="solution-title">{solution.name}</h1>
+        <p class="page-hero__introduction">{solution.introduction}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="operational-needs-title">
+    <div class="shell detail-grid">
+      <div class="detail-heading">
+        <p class="eyebrow">Operational needs</p>
+        <h2 id="operational-needs-title">What this solution addresses</h2>
+      </div>
+      <ul class="numbered-list">
+        {solution.operationalNeeds.map((need, index) => (
+          <li><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span><p>{need}</p></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="capabilities-title">
+    <div class="shell">
+      <div class="content-heading">
+        <p class="eyebrow">Capabilities</p>
+        <h2 id="capabilities-title">What the scope may include</h2>
+        <p>
+          The applicable capabilities depend on the property, current operation, equipment, available systems,
+          and approved implementation scope.
+        </p>
+      </div>
+      <ul class="capability-grid">
+        {solution.capabilities.map((capability) => <li>{capability}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  {solution.equipment && (
+    <section class="section equipment-section" aria-labelledby="equipment-title">
+      <div class="shell">
+        <div class="content-heading">
+          <p class="eyebrow">Equipment examples</p>
+          <h2 id="equipment-title">Equipment supports the wider parking operation.</h2>
+          <p>
+            These equipment types are shown for local website review. Final selection depends on site fit,
+            integration requirements, operating procedures, and publication approval.
+          </p>
+        </div>
+        <div class="equipment-grid">
+          {solution.equipment.map((item) => (
+            <article class="equipment-card">
+              <div class="equipment-card__image">
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  widths={[320, 480, 640]}
+                  sizes="(max-width: 760px) calc(100vw - 3.75rem), (max-width: 1050px) 42vw, 270px"
+                  format="webp"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+              <div class="equipment-card__content">
+                <h3>{item.name}</h3>
+                <p>{item.description}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section section--dark" aria-labelledby="wider-operation-title">
+    <div class="shell value-grid">
+      <div>
+        <p class="eyebrow">Property-owner value</p>
+        <h2 id="wider-operation-title">How it fits into parking operations</h2>
+        <p class="value-grid__wider">{solution.widerOperation}</p>
+      </div>
+      <ul class="value-list">
+        {solution.propertyOwnerValue.map((value) => <li>{value}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="property-contexts-title">
+    <div class="shell detail-grid">
+      <div class="detail-heading">
+        <p class="eyebrow">Property contexts</p>
+        <h2 id="property-contexts-title">Where this solution may be relevant</h2>
+        <p>Relevance is assessed against the property and does not imply a verified project relationship.</p>
+      </div>
+      <ul class="context-list">
+        {solution.propertyContexts.map((context) => <li>{context}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--muted" aria-labelledby="related-solutions-title">
+    <div class="shell">
+      <div class="content-heading">
+        <p class="eyebrow">Related solutions</p>
+        <h2 id="related-solutions-title">Review connected operating needs</h2>
+      </div>
+      <div class="related-solutions-grid">
+        {relatedSolutions.map((relatedSolution) => (
+          <SolutionCard solution={relatedSolution} compact headingLevel="h3" />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SiteAssessmentCta actionLabel={solution.ctaText} />
+</BaseLayout>

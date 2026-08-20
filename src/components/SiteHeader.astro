@@ -6,6 +6,18 @@ interface Props {
 }
 
 const { navigation } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+function isCurrentPage(href: string): boolean {
+  const targetPath = href.split('#')[0];
+
+  if (!targetPath || targetPath === '/') {
+    return false;
+  }
+
+  const normalizedTarget = targetPath.endsWith('/') ? targetPath : `${targetPath}/`;
+  return currentPath === normalizedTarget || currentPath.startsWith(normalizedTarget);
+}
 ---
 
 <header class="site-header" data-site-header>
@@ -18,12 +30,12 @@ const { navigation } = Astro.props;
     <nav class="desktop-nav" aria-label="Primary navigation">
       <ul>
         {navigation.map((item) => (
-          <li><a href={item.href}>{item.label}</a></li>
+          <li><a href={item.href} aria-current={isCurrentPage(item.href) ? 'page' : undefined}>{item.label}</a></li>
         ))}
       </ul>
     </nav>
 
-    <a class="button button--compact header-cta" href="#site-assessment">
+    <a class="button button--compact header-cta" href="/#site-assessment">
       Request a Site Assessment
     </a>
 
@@ -36,11 +48,11 @@ const { navigation } = Astro.props;
         <nav aria-label="Mobile navigation">
           <ul>
             {navigation.map((item) => (
-              <li><a href={item.href}>{item.label}</a></li>
+              <li><a href={item.href} aria-current={isCurrentPage(item.href) ? 'page' : undefined}>{item.label}</a></li>
             ))}
           </ul>
         </nav>
-        <a class="button" href="#site-assessment">Request a Site Assessment</a>
+        <a class="button" href="/#site-assessment">Request a Site Assessment</a>
       </div>
     </details>
   </div>
