@@ -1,0 +1,31 @@
+---
+interface Props {
+  heading?: string;
+  description?: string;
+  actionLabel?: string;
+}
+
+const {
+  heading = 'Tell us about your property and parking requirements.',
+  description =
+    'Request a site assessment to discuss your facility, current parking setup, operational concerns, and project requirements.',
+  actionLabel = 'Request a Site Assessment',
+} = Astro.props;
+---
+
+<section class="section assessment solution-assessment" aria-labelledby="solution-assessment-title">
+  <div class="shell assessment__grid">
+    <div>
+      <p class="eyebrow eyebrow--light">Site assessment</p>
+      <h2 id="solution-assessment-title">{heading}</h2>
+    </div>
+    <div class="assessment__content">
+      <p>{description}</p>
+      <a class="button button--light" href="/#site-assessment">{actionLabel}</a>
+      <p class="assessment__status">
+        <span class="status-dot status-dot--light" aria-hidden="true"></span>
+        The site-assessment form and submission route are not yet available.
+      </p>
+    </div>
+  </div>
+</section>

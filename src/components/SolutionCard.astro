@@ -1,0 +1,28 @@
+---
+import type { Solution } from '../data/solutions';
+
+interface Props {
+  solution: Solution;
+  index?: number;
+  compact?: boolean;
+  headingLevel?: 'h2' | 'h3';
+}
+
+const { solution, index, compact = false, headingLevel = 'h2' } = Astro.props;
+const Heading = headingLevel;
+---
+
+<article class:list={['solutions-card', { 'solutions-card--compact': compact }]}>
+  {index !== undefined && (
+    <span class="solutions-card__index" aria-hidden="true">
+      {String(index + 1).padStart(2, '0')}
+    </span>
+  )}
+  <Heading class="solutions-card__title">
+    <a href={`/solutions/${solution.slug}/`}>{solution.name}</a>
+  </Heading>
+  <p>{solution.shortDescription}</p>
+  <a class="solutions-card__link" href={`/solutions/${solution.slug}/`}>
+    View solution <span aria-hidden="true">&#8594;</span>
+  </a>
+</article>

@@ -2,7 +2,16 @@
 
 Static-first corporate website for Pro Parking Group, representing Professional Parking Management Corporation (Pro-P) and Park Secure Management Corporation (Park Secure) with equal prominence.
 
-This working foundation contains the responsive global shell and the first Home-page vertical slice. It is based on the approved Business Requirements Document in `docs/Pro_Parking_Group_Website_BRD_v1.0.md`.
+This working foundation contains the responsive global shell, the Home page, and the Solutions content slice. It is based on the approved Business Requirements Document in `docs/Pro_Parking_Group_Website_BRD_v1.0.md`.
+
+## Requirements baseline
+
+The approved website requirements baseline currently consists of:
+
+- `docs/Pro_Parking_Group_Website_BRD_v1.0.md`
+- `docs/requirements/BRD-Amendment-001-parking-lot-microsites.md`
+
+Both documents must be read together until the amendment is consolidated into BRD v1.1. The microsite amendment defines a future capability and does not authorize public parking-facility pages in the current implementation.
 
 ## Prerequisites
 
@@ -51,7 +60,9 @@ The preview server prints its local URL, normally `http://localhost:4321/`.
 ## Content locations
 
 - `src/data/home.ts`: Git-managed Home-page content, navigation, company summaries, solution areas, industries, and pending-content states
+- `src/data/solutions.ts`: typed content for the Solutions overview and five solution-detail pages
 - `src/pages/index.astro`: Home-page section composition
+- `src/pages/solutions/`: statically generated Solutions overview and reusable detail route
 - `src/components/`: reusable global shell and section components
 - `src/assets/brand/`: selected local company marks used by the website
 - `src/assets/images/`: selected local editorial and equipment images
@@ -72,12 +83,16 @@ Client logos, property logos, project photographs, testimonials, and other third
 - Static Astro and TypeScript foundation
 - Responsive header, navigation, footer, and accessibility baseline
 - Home page with group, company, solution, industry, support, careers, and site-assessment-intent sections
+- Solutions overview and five statically generated solution-detail pages
+- Balanced local-review equipment presentation on the Parking Systems and Equipment page
 - Selective local asset integration with responsive image generation
 - Git-managed structured content
 - Local development, production build, preview, and validation scripts
 
 ## Deferred capabilities
 
-The full sitemap, dedicated company and solution pages, portfolio records, forms, delivery integrations, CRM, ticketing, applicant tracking, CMS, analytics provider, production domain, hosting configuration, and deployment remain deferred.
+The remaining sitemap, dedicated company pages, portfolio records, forms, delivery integrations, CRM, ticketing, applicant tracking, CMS, analytics provider, production domain, hosting configuration, and deployment remain deferred.
+
+Future parking-facility microsites are also deferred. The approved direction uses shared templates, structured facility and related-service content, and stable routes under `/parking/{site-slug}/` without separate codebases or deployments per facility. No `/parking/` route, facility record, PITX page, or shuttle service page is implemented in the current repository state.
 
 Final group identity, complete brand guidance, legal and contact information, client and project proof, and detailed business content remain pending approval. The company logo files in this working version still require final publication confirmation. The group text identity and visual tokens remain temporary working elements.

@@ -1,19 +1,21 @@
-# Home Asset Inventory
+# Website Asset Inventory
 
 ## Review summary
 
-The website source review covers the original 22 PNG library plus the separately supplied `parking-lot.jpg`. No hidden source files, SVGs, brand guides, font files, command-center visuals, favicons, or social-sharing assets were found. No duplicate source hashes were found. Equipment-cleanup review artifacts under `equipment/unbranded/` are not website assets and remain excluded pending visual approval.
+The website source review covers the original 22 PNG library, the separately supplied `parking-lot.jpg`, and four equipment files approved for local Solutions review. No hidden source files, SVGs, brand guides, font files, command-center visuals, favicons, or social-sharing assets were found. Equipment-cleanup contact sheets and the edit manifest under `equipment/unbranded/` are review artifacts and are not website assets.
 
-Three files are rendered in the working Home review: the parking-lot photograph and the only supplied logo file for each operating company. The AutoPay machine is retained in the repository as deferred supporting equipment and is no longer rendered. Source-library presence does not replace final publication approval. No group logo was found, so the text-based Pro Parking Group identity remains.
+Three files are rendered on Home: the parking-lot photograph and the only supplied logo file for each operating company. Four equipment images are rendered with equal card structure only on the Parking Systems and Equipment detail page. Source-library presence and local-review approval do not replace final public publication approval. No group logo was found, so the text-based Pro Parking Group identity remains.
+
+The supplied paths for the cleaned entrance and exit manager and barrier gate pointed to `equipment/unbranded/`, but those files were not present there during this task. Exact-name cleaned files were found directly under `equipment/`, inspected at actual pixels, and confirmed to contain no visible Hikvision branding before being copied.
 
 ## Source assets and decisions
 
 | Source path | Raster details | Apparent subject | Decision and intended use | Repository destination | Reason and approval dependency |
 | --- | --- | --- | --- | --- | --- |
-| `equipment/std-all-in-one-entrance-exit-manager.png` | PNG, 800 x 500, 60.3 KB, landscape, opaque | Branded entrance or exit terminal | Deferred | None | Relevant equipment, but the visible vendor mark and publication rights require confirmation. |
-| `equipment/std-anpr-camera.png` | PNG, 800 x 713, 21.7 KB, landscape, opaque | License-plate-recognition camera | Deferred | None | Relevant equipment, but resolution, provenance, and publication rights are not established. |
-| `equipment/std-autopay-machine-front.png` | PNG, 1122 x 1402, 1.41 MB, portrait, opaque | Automated parking payment machine | Deferred supporting equipment; not rendered | `src/assets/images/autopay-machine.png` | Retained for a possible proportionate below-the-fold use under Cashierless Parking and Digital Payments or Parking Systems and Equipment. Confirm product-image publication rights before any future use. |
-| `equipment/std-barrier-gate-red.png` | PNG, 1448 x 1086, 830.2 KB, landscape, opaque | Red barrier gate with visible vendor branding | Deferred | None | Relevant equipment, but the prominent vendor mark and publication rights require confirmation. |
+| `equipment/std-all-in-one-entrance-exit-manager-unbranded.png` | PNG, 1586 x 992, 819.0 KB, landscape, opaque | Cleaned entrance or exit lane terminal | Selected for local Solutions review | `src/assets/images/equipment/entry-exit-manager.png` | No visible Hikvision branding remained on pixel inspection. Public publication approval and provenance confirmation remain required. |
+| `equipment/std-anpr-camera.png` | JPEG-encoded file with `.png` extension, 800 x 713, 21.7 KB, landscape, opaque | Automatic number-plate recognition camera | Selected for local Solutions review | `src/assets/images/equipment/anpr-camera.png` | No visible vendor branding was found. Public publication approval, provenance, and resolution acceptance remain required. |
+| `equipment/std-autopay-machine-front.png` | PNG, 1122 x 1402, 1.41 MB, portrait, opaque | Automated parking payment machine | Selected for balanced local Solutions review | `src/assets/images/equipment/automated-payment-machine.png` | Used at the same card size and visual weight as the other equipment types. No unwanted vendor branding was found. Public publication approval remains required. |
+| `equipment/std-barrier-gate-red-unbranded.png` | PNG, 1448 x 1086, 1.19 MB, landscape, opaque | Cleaned red vehicle barrier gate | Selected for local Solutions review | `src/assets/images/equipment/barrier-gate.png` | No visible Hikvision branding remained on pixel inspection. Public publication approval and provenance confirmation remain required. |
 | `industries/std-industry-airport-parking.png` | PNG, 1536 x 1024, 2.51 MB, landscape, opaque | Airport parking illustration | Excluded from Home | None | Generic property context with no verified project relationship or publication provenance. |
 | `industries/std-industry-event-venue-parking.png` | PNG, 502 x 432, 338.8 KB, landscape, opaque | Event-venue parking illustration | Excluded from Home | None | Generic property scene could imply unverified experience. |
 | `industries/std-industry-hospital-parking.png` | PNG, 374 x 432, 265.9 KB, portrait, opaque | Hospital parking illustration | Excluded from Home | None | Generic, low-resolution property scene with no verified project relationship. |
@@ -39,6 +41,6 @@ Three files are rendered in the working Home review: the parking-lot photograph 
 - No Pro Parking Group logo or wordmark was found. The current text identity remains.
 - No brand guide or approved color specification was found. Existing neutral design tokens remain unchanged.
 - No font files or licensing evidence were found. The system-font stack remains.
-- The prepared visuals named `01` through `07` were not present. The separately supplied parking-lot photograph now provides the broader Hero context.
+- No approved imagery is available for the other four solution-detail pages. Their layouts use verified text rather than fabricated product or interface visuals.
 - No client or property logo was found or selected. The public portfolio remains hidden.
 - Logo clear-space, minimum-size, color-variant, and favicon guidance still require a brand decision.

@@ -27,8 +27,8 @@ const companyLogos = [
         <p class="hero__description">{homeContent.hero.description}</p>
         <div class="hero__actions">
           <a class="button button--light" href="#site-assessment">Request a Site Assessment</a>
-          <a class="text-link text-link--light" href="#solutions">
-            Explore Our Solutions <span aria-hidden="true">&#8595;</span>
+          <a class="text-link text-link--light" href="/solutions/">
+            Explore Our Solutions <span aria-hidden="true">&#8594;</span>
           </a>
         </div>
       </div>
@@ -114,7 +114,7 @@ const companyLogos = [
         {homeContent.solutions.map((solution, index) => (
           <article class="solution-item">
             <span class="solution-item__index" aria-hidden="true">0{index + 1}</span>
-            <h3>{solution.title}</h3>
+            <h3><a href={solution.href}>{solution.title}</a></h3>
             <p>{solution.description}</p>
           </article>
         ))}
