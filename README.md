@@ -2,7 +2,7 @@
 
 Static-first corporate website for Pro Parking Group, representing Professional Parking Management Corporation (Pro-P) and Park Secure Management Corporation (Park Secure) with equal prominence.
 
-This working foundation contains the responsive global shell, the Home page, the About page, the Solutions content slice, the Our Companies content slice, and the Industries content slice. It is based on the approved Business Requirements Document in `docs/Pro_Parking_Group_Website_BRD_v1.0.md`.
+This working foundation contains the responsive global shell, the Home page, the About page, the FAQ page, the Solutions content slice, the Our Companies content slice, and the Industries content slice. It is based on the approved Business Requirements Document in `docs/Pro_Parking_Group_Website_BRD_v1.0.md`.
 
 ## Requirements baseline
 
@@ -63,8 +63,10 @@ The preview server prints its local URL, normally `http://localhost:4321/`.
 - `src/data/solutions.ts`: typed content for the Solutions overview and five solution-detail pages
 - `src/data/companies.ts`: typed content for the Our Companies overview and two company-detail pages
 - `src/data/industries.ts`: typed content for the Industries overview and eight property-type detail pages
+- `src/data/faqs.ts`: typed content for the categorized parking FAQ page
 - `src/pages/index.astro`: Home-page section composition
 - `src/pages/about.astro`: factual About page using the approved Solutions and Companies data
+- `src/pages/faq.astro`: categorized parking questions and approved answers
 - `src/pages/solutions/`: statically generated Solutions overview and reusable detail route
 - `src/pages/companies/`: statically generated company overview and reusable detail route
 - `src/pages/industries/`: statically generated Industries overview and reusable property-type detail route
@@ -87,12 +89,14 @@ Client logos, property logos, project photographs, testimonials, and other third
 
 - Static Astro and TypeScript foundation
 - Responsive header, navigation, footer, and accessibility baseline
-- Home page with group, company, solution, industry, support, careers, and site-assessment-intent sections
+- Home page with group, company, solution, industry, FAQ, and site-assessment-intent sections
 - About page covering group services, site assessment, operating companies, and property contexts
+- Parking FAQ with 15 approved answers across four categories
 - Solutions overview and five statically generated solution-detail pages
 - Our Companies overview and two statically generated company-detail pages
 - Industries overview and eight statically generated property-requirement detail pages
-- 20 statically generated public routes in the current build
+- 21 statically generated public routes in the current build
+- Featured Equipment navigation to the existing Parking Systems and Equipment page
 - Balanced local-review equipment presentation on the Parking Systems and Equipment page
 - Selective local asset integration with responsive image generation
 - Git-managed structured content
@@ -101,6 +105,8 @@ Client logos, property logos, project photographs, testimonials, and other third
 ## Deferred capabilities
 
 The remaining sitemap, portfolio records, forms, delivery integrations, CRM, ticketing, applicant tracking, CMS, analytics provider, production domain, hosting configuration, and deployment remain deferred.
+
+The unmerged Support route has been removed. Careers remains deferred and is not generated or linked publicly until approved content and an application process are available.
 
 Future parking-facility microsites are also deferred. The approved direction uses shared templates, structured facility and related-service content, and stable routes under `/parking/{site-slug}/` without separate codebases or deployments per facility. No `/parking/` route, facility record, PITX page, or shuttle service page is implemented in the current repository state.
 

@@ -279,6 +279,25 @@ h3 {
   text-underline-offset: 0.45rem;
 }
 
+.desktop-nav a.nav-link--featured {
+  border-bottom: 3px solid var(--color-signal);
+  color: var(--color-signal-dark);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.desktop-nav a.nav-link--featured:hover {
+  border-bottom-color: var(--color-green-800);
+  color: var(--color-green-800);
+}
+
+.desktop-nav a.nav-link--featured[aria-current='page'] {
+  border-bottom-color: var(--color-green-800);
+  color: var(--color-green-950);
+  background: #fff9e8;
+  text-decoration: none;
+}
+
 .mobile-nav {
   display: none;
 }
@@ -646,6 +665,23 @@ h3 {
   border-top: 1px solid var(--color-line);
   font-size: 0.85rem;
   font-weight: 700;
+}
+
+.home-faq__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: start;
+}
+
+.home-faq__content {
+  max-width: 46rem;
+}
+
+.home-faq__content > p {
+  margin-bottom: 1.5rem;
+  color: var(--color-ink-soft);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
 }
 
 .assessment {
@@ -1450,7 +1486,216 @@ h3 {
   margin-top: 1.5rem;
 }
 
+.faq-hero__content {
+  max-width: 62rem;
+}
+
+.faq-introduction__grid,
+.faq-category__grid,
+.related-links-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(3rem, 8vw, 8rem);
+  align-items: start;
+}
+
+.faq-category-nav ol,
+.related-page-links ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.faq-information-note {
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px solid var(--color-line);
+  border-left: 0.45rem solid var(--color-signal-dark);
+  background: var(--color-paper);
+}
+
+.faq-information-note h2 {
+  max-width: 20ch;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+.faq-information-note > p:last-child {
+  max-width: 40rem;
+  margin-bottom: 0;
+  color: var(--color-ink-soft);
+  font-size: 1.05rem;
+}
+
+.faq-category-nav {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 0.35rem solid var(--color-green-800);
+  background: var(--color-muted);
+}
+
+.faq-category-nav > p {
+  margin-bottom: 1rem;
+  color: var(--color-green-800);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.faq-category-nav li + li {
+  border-top: 1px solid var(--color-line);
+}
+
+.faq-category-nav a {
+  display: block;
+  min-height: 3.25rem;
+  padding-block: 0.75rem;
+  color: var(--color-green-950);
+  font-weight: 700;
+  text-underline-offset: 0.25em;
+}
+
+.faq-category {
+  scroll-margin-top: 6rem;
+}
+
+.faq-category__heading {
+  position: sticky;
+  top: 8rem;
+}
+
+.faq-list {
+  border-top: 1px solid var(--color-line);
+}
+
+.faq-list details {
+  scroll-margin-top: 7rem;
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-white);
+}
+
+.faq-list summary {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 1.5rem;
+  gap: 1.25rem;
+  align-items: center;
+  min-height: 5.5rem;
+  padding: 1.25rem 1.5rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.faq-list summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq-list summary:hover {
+  background: #fff9e8;
+}
+
+.faq-list summary h3 {
+  margin: 0;
+  font-size: clamp(1.15rem, 2vw, 1.45rem);
+  letter-spacing: -0.02em;
+}
+
+.faq-list summary > span {
+  position: relative;
+  width: 1.25rem;
+  height: 1.25rem;
+  border: 2px solid var(--color-green-800);
+  border-radius: 50%;
+}
+
+.faq-list summary > span::before,
+.faq-list summary > span::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0.6rem;
+  height: 2px;
+  background: var(--color-green-800);
+  content: '';
+  transform: translate(-50%, -50%);
+}
+
+.faq-list summary > span::after {
+  transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.faq-list details[open] summary {
+  border-bottom: 1px solid var(--color-line);
+  background: #fff9e8;
+}
+
+.faq-list details[open] summary > span::after {
+  transform: translate(-50%, -50%) rotate(0);
+}
+
+.faq-answer {
+  max-width: 48rem;
+  padding: 1.5rem;
+}
+
+.faq-answer > p {
+  margin-bottom: 0;
+  color: var(--color-ink-soft);
+  font-size: 1.05rem;
+}
+
+.faq-safety-note {
+  margin-top: 1.25rem !important;
+  padding: 1rem;
+  border-left: 0.3rem solid var(--color-signal-dark);
+  color: var(--color-ink) !important;
+  background: #fff9e8;
+  font-weight: 700;
+}
+
+.related-page-links {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-top: 0.35rem solid var(--color-green-800);
+  background: var(--color-muted);
+}
+
+.related-page-links > p {
+  margin-bottom: 1rem;
+  color: var(--color-green-800);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.related-page-links li + li {
+  border-top: 1px solid var(--color-line);
+}
+
+.related-page-links a {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  min-height: 3.5rem;
+  padding-block: 0.8rem;
+  color: var(--color-green-950);
+  font-weight: 700;
+  text-underline-offset: 0.25em;
+}
+
 @media (max-width: 1050px) {
+  .site-footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .solutions-card-grid,
+  .equipment-grid,
+  .company-profile-grid,
+  .industry-overview-grid,
+  .about-assessment-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 900px) {
   .desktop-nav,
   .header-cta {
     display: none;
@@ -1524,21 +1769,23 @@ h3 {
     text-decoration: none;
   }
 
+  .mobile-nav nav a.nav-link--featured {
+    padding-inline: 0.75rem;
+    border-left: 0.3rem solid var(--color-signal-dark);
+    color: var(--color-signal-dark);
+    background: #fff9e8;
+    font-weight: 800;
+  }
+
+  .mobile-nav nav a.nav-link--featured[aria-current='page'] {
+    border-left-color: var(--color-green-800);
+    color: var(--color-green-950);
+    text-decoration-color: var(--color-signal-dark);
+  }
+
   .mobile-nav .button {
     width: 100%;
     margin-top: 1rem;
-  }
-
-  .site-footer__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .solutions-card-grid,
-  .equipment-grid,
-  .company-profile-grid,
-  .industry-overview-grid,
-  .about-assessment-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -1558,7 +1805,11 @@ h3 {
   .page-hero__grid,
   .solutions-fit__grid,
   .detail-grid,
-  .value-grid {
+  .value-grid,
+  .home-faq__grid,
+  .faq-introduction__grid,
+  .faq-category__grid,
+  .related-links-section {
     grid-template-columns: 1fr;
   }
 
@@ -1600,6 +1851,10 @@ h3 {
 
   .about-assessment-grid li {
     min-height: auto;
+  }
+
+  .faq-category__heading {
+    position: static;
   }
 
   .industry-overview-card {
