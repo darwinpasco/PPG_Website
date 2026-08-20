@@ -1,0 +1,108 @@
+---
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import { faqCategories, faqs } from '../data/faqs';
+import { homeContent } from '../data/home';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const categories = [...faqCategories].sort((a, b) => a.displayOrder - b.displayOrder);
+const questionsByCategory = new Map(
+  categories.map((category) => [
+    category.id,
+    faqs
+      .filter((faq) => faq.category === category.id)
+      .sort((a, b) => a.displayOrder - b.displayOrder),
+  ]),
+);
+
+const meta = {
+  title: 'Parking FAQs | Pro Parking Group',
+  description:
+    'Find answers about parking rates, operating hours, payments, Sales Invoices, lost tickets, parking privileges, monthly parking, and facility concerns.',
+} as const;
+---
+
+<BaseLayout title={meta.title} description={meta.description} navigation={homeContent.navigation}>
+  <section class="page-hero faq-hero" aria-labelledby="faq-title">
+    <div class="shell">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'FAQ' }]} />
+      <div class="faq-hero__content">
+        <p class="eyebrow eyebrow--light">Parking information</p>
+        <h1 id="faq-title">Parking frequently asked questions</h1>
+        <p class="page-hero__introduction">
+          Parking rates, operating hours, payment channels, privileges, and facility rules may differ by
+          location. Check the signs and instructions at the parking facility for site-specific information.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section faq-introduction" aria-labelledby="parking-session-title">
+    <div class="shell faq-introduction__grid">
+      <div class="faq-information-note">
+        <p class="eyebrow">Parking-session details</p>
+        <h2 id="parking-session-title">Asking about a parking session?</h2>
+        <p>
+          Keep the parking facility name, date and approximate time, vehicle plate number, parking ticket or
+          transaction reference, and a short description of the concern available.
+        </p>
+      </div>
+
+      <nav class="faq-category-nav" aria-label="FAQ categories">
+        <p>Browse by category</p>
+        <ol>
+          {categories.map((category) => (
+            <li><a href={`#${category.id}`}>{category.name}</a></li>
+          ))}
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+  <div class="faq-categories">
+    {categories.map((category, categoryIndex) => (
+      <section
+        class:list={['section', 'faq-category', { 'section--muted': categoryIndex % 2 === 0 }]}
+        id={category.id}
+        aria-labelledby={`${category.id}-title`}
+      >
+        <div class="shell faq-category__grid">
+          <div class="faq-category__heading">
+            <p class="eyebrow">Category {String(category.displayOrder).padStart(2, '0')}</p>
+            <h2 id={`${category.id}-title`}>{category.name}</h2>
+          </div>
+          <div class="faq-list">
+            {questionsByCategory.get(category.id)?.map((faq) => (
+              <details id={faq.id}>
+                <summary><h3>{faq.question}</h3><span aria-hidden="true"></span></summary>
+                <div class="faq-answer">
+                  <p>{faq.answer}</p>
+                  {faq.note && <p class="faq-safety-note">{faq.note}</p>}
+                </div>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    ))}
+  </div>
+
+  <section class="section" aria-labelledby="faq-related-title">
+    <div class="shell related-links-section">
+      <div>
+        <p class="eyebrow">Related information</p>
+        <h2 id="faq-related-title">Learn about parking services and property requirements</h2>
+      </div>
+      <nav class="related-page-links" aria-label="Related website sections">
+        <ul>
+          <li><a href="/solutions/">Review parking solutions <span aria-hidden="true">&#8594;</span></a></li>
+          <li>
+            <a href="/industries/">
+              View parking requirements by property type <span aria-hidden="true">&#8594;</span>
+            </a>
+          </li>
+          <li><a href="/about/">About Pro Parking Group <span aria-hidden="true">&#8594;</span></a></li>
+        </ul>
+      </nav>
+    </div>
+  </section>
+</BaseLayout>

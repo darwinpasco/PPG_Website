@@ -1,6 +1,7 @@
 export interface NavigationItem {
   label: string;
   href: string;
+  featured?: boolean;
 }
 
 export interface CompanySummary {
@@ -38,9 +39,9 @@ export const homeContent = {
     { label: 'About', href: '/about/' },
     { label: 'Our Companies', href: '/companies/' },
     { label: 'Solutions', href: '/solutions/' },
+    { label: 'Equipment', href: '/solutions/parking-systems-equipment/', featured: true },
     { label: 'Industries', href: '/industries/' },
-    { label: 'Careers', href: '/#careers' },
-    { label: 'Support', href: '/#support' },
+    { label: 'FAQ', href: '/faq/' },
   ] satisfies NavigationItem[],
   hero: {
     eyebrow: 'Parking management and technology',
@@ -118,21 +119,13 @@ export const homeContent = {
   portfolio: {
     items: [] as PortfolioItem[],
   },
-  journeys: {
-    support: {
-      eyebrow: 'Customer support',
-      title: 'Need help with a parking concern?',
-      description:
-        'Customer Support will cover ticket, payment, entry, exit, accessibility, and other parking concerns.',
-      status: 'Support contact options are not yet available on this working page.',
-    },
-    careers: {
-      eyebrow: 'Careers',
-      title: 'Work with Pro Parking Group',
-      description:
-        'Approved job openings, work locations, and application instructions will be published through the Careers section.',
-      status: 'Job listings and application options are not yet available on this working page.',
-    },
+  faq: {
+    eyebrow: 'Parking information',
+    title: 'Parking questions and answers',
+    description:
+      'Find guidance on rates, operating hours, payment methods, Sales Invoices, exit concerns, lost tickets, parking privileges, monthly parking, and feedback.',
+    linkLabel: 'View parking FAQs',
+    href: '/faq/',
   },
   assessment: {
     eyebrow: 'Site assessment',
