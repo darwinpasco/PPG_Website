@@ -16,6 +16,11 @@ export interface SolutionSummary {
   href: `/solutions/${string}/`;
 }
 
+export interface IndustrySummary {
+  name: string;
+  href: `/industries/${string}/`;
+}
+
 export interface PortfolioItem {
   type: 'client' | 'managed-property' | 'project';
   name: string;
@@ -33,7 +38,7 @@ export const homeContent = {
     { label: 'About', href: '/#about' },
     { label: 'Our Companies', href: '/companies/' },
     { label: 'Solutions', href: '/solutions/' },
-    { label: 'Industries', href: '/#industries' },
+    { label: 'Industries', href: '/industries/' },
     { label: 'Careers', href: '/#careers' },
     { label: 'Support', href: '/#support' },
   ] satisfies NavigationItem[],
@@ -101,15 +106,15 @@ export const homeContent = {
     },
   ] satisfies SolutionSummary[],
   industries: [
-    'Shopping malls and retail developments',
-    'Office buildings',
-    'Hotels and hospitality properties',
-    'Residential and mixed-use developments',
-    'Hospitals and healthcare facilities',
-    'Transport terminals',
-    'Open parking facilities',
-    'Events and high-volume destinations',
-  ],
+    { name: 'Shopping malls and retail developments', href: '/industries/shopping-malls-retail/' },
+    { name: 'Office buildings', href: '/industries/office-buildings/' },
+    { name: 'Hotels and hospitality properties', href: '/industries/hotels-hospitality/' },
+    { name: 'Residential and mixed-use developments', href: '/industries/residential-mixed-use/' },
+    { name: 'Hospitals and healthcare facilities', href: '/industries/hospitals-healthcare/' },
+    { name: 'Transport terminals', href: '/industries/transport-terminals/' },
+    { name: 'Open parking facilities', href: '/industries/open-parking-facilities/' },
+    { name: 'Events and high-volume destinations', href: '/industries/events-high-volume-destinations/' },
+  ] satisfies IndustrySummary[],
   portfolio: {
     items: [] as PortfolioItem[],
   },

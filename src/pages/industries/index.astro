@@ -1,0 +1,49 @@
+---
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SiteAssessmentCta from '../../components/SiteAssessmentCta.astro';
+import { homeContent } from '../../data/home';
+import { industries, industriesMeta } from '../../data/industries';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title={industriesMeta.title}
+  description={industriesMeta.description}
+  navigation={homeContent.navigation}
+>
+  <section class="page-hero industries-overview-hero" aria-labelledby="industries-overview-title">
+    <div class="shell">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'Industries' }]} />
+      <div class="industries-overview-hero__content">
+        <p class="eyebrow eyebrow--light">{industriesMeta.eyebrow}</p>
+        <h1 id="industries-overview-title">{industriesMeta.heading}</h1>
+        <p class="page-hero__introduction">{industriesMeta.introduction}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section industries-overview" aria-labelledby="property-types-title">
+    <div class="shell">
+      <div class="content-heading">
+        <p class="eyebrow">Property contexts</p>
+        <h2 id="property-types-title">Property types</h2>
+      </div>
+      <div class="industry-overview-grid">
+        {industries.map((industry, index) => (
+          <article class="industry-overview-card">
+            <span class="industry-overview-card__index" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3>{industry.name}</h3>
+            <p>{industry.cardSummary}</p>
+            <a class="industry-overview-card__link" href={`/industries/${industry.slug}/`}>
+              {industry.cardLinkLabel} <span aria-hidden="true">&#8594;</span>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SiteAssessmentCta />
+</BaseLayout>
