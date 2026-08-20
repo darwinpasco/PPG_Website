@@ -1,0 +1,99 @@
+---
+import { Image } from 'astro:assets';
+import Breadcrumbs from '../../components/Breadcrumbs.astro';
+import SiteAssessmentCta from '../../components/SiteAssessmentCta.astro';
+import { companies, type Company } from '../../data/companies';
+import { homeContent } from '../../data/home';
+import { getSolution, type Solution } from '../../data/solutions';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export function getStaticPaths() {
+  return companies.map((company) => ({
+    params: { slug: company.slug },
+    props: { company },
+  }));
+}
+
+interface Props {
+  company: Company;
+}
+
+const { company } = Astro.props;
+const applicableSolutions = company.solutionSlugs
+  .map((slug) => getSolution(slug))
+  .filter((solution): solution is Solution => solution !== undefined);
+---
+
+<BaseLayout
+  title={company.seoTitle}
+  description={company.seoDescription}
+  navigation={homeContent.navigation}
+>
+  <section class="page-hero page-hero--detail company-detail-hero" aria-labelledby="company-title">
+    <div class="shell">
+      <Breadcrumbs
+        items={[
+          { label: 'Home', href: '/' },
+          { label: 'Our Companies', href: '/companies/' },
+          { label: company.shortName },
+        ]}
+      />
+      <div class="company-detail-hero__grid">
+        <div class="company-detail-hero__content">
+          <p class="eyebrow eyebrow--light">Operating company</p>
+          <h1 id="company-title">{company.legalName}</h1>
+          <p class="company-detail-hero__short-name">{company.shortName}</p>
+          <p class="page-hero__introduction">{company.introduction}</p>
+        </div>
+        <div class:list={['company-detail-hero__logo', `company-logo--${company.slug}`]}>
+          <Image
+            src={company.logo}
+            alt={company.logoAlt}
+            widths={[160, 240, 320]}
+            sizes="(max-width: 760px) 65vw, 320px"
+            format="webp"
+            loading="eager"
+            decoding="async"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="company-role-title">
+    <div class="shell detail-grid">
+      <div class="detail-heading">
+        <p class="eyebrow">Company role</p>
+        <h2 id="company-role-title">Parking operations through {company.shortName}</h2>
+      </div>
+      <div class="company-role-copy">
+        <p>{company.roleDescription}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" aria-labelledby="company-solutions-title">
+    <div class="shell">
+      <div class="content-heading">
+        <p class="eyebrow">Group solutions</p>
+        <h2 id="company-solutions-title">Services for each property</h2>
+        <p>
+          Parking requirements differ by property. Pro Parking Group’s services cover day-to-day parking
+          operations, digital payment channels, parking systems and equipment, monitoring and reporting,
+          and consultancy and technical services.
+        </p>
+      </div>
+      <ul class="company-solution-list">
+        {applicableSolutions.map((solution) => (
+          <li>
+            <a href={`/solutions/${solution.slug}/`}>
+              {solution.name} <span aria-hidden="true">&#8594;</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <SiteAssessmentCta actionLabel={company.ctaText} />
+</BaseLayout>

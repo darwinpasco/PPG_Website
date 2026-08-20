@@ -62,14 +62,21 @@ function isCurrentPage(href: string): boolean {
   const mobileNavs = document.querySelectorAll<HTMLDetailsElement>('[data-mobile-nav]');
 
   mobileNavs.forEach((mobileNav) => {
+    const summary = mobileNav.querySelector('summary');
+
     mobileNav.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => mobileNav.removeAttribute('open'));
     });
 
     mobileNav.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' && event.target === summary) {
+        event.preventDefault();
+        mobileNav.toggleAttribute('open');
+      }
+
       if (event.key === 'Escape') {
         mobileNav.removeAttribute('open');
-        mobileNav.querySelector('summary')?.focus();
+        summary?.focus();
       }
     });
   });

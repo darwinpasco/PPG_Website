@@ -93,7 +93,7 @@ const companyLogos = [
               />
             </div>
             <p class="company-card__short-name">{company.shortName}</p>
-            <h3>{company.legalName}</h3>
+            <h3><a class="company-card__profile-link" href={company.href}>{company.legalName}</a></h3>
             <p>{company.description}</p>
             <span class="company-card__label">Pro Parking Group operating company</span>
           </article>
