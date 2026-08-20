@@ -1,0 +1,205 @@
+---
+import { Image } from 'astro:assets';
+import parkSecureLogo from '../assets/brand/park-secure-logo.png';
+import proPLogo from '../assets/brand/pro-p-logo.png';
+import parkingLot from '../assets/images/parking-lot.jpg';
+import SectionHeading from '../components/SectionHeading.astro';
+import { homeContent } from '../data/home';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const hasApprovedPortfolioContent = homeContent.portfolio.items.length > 0;
+const companyLogos = [
+  { src: proPLogo, className: 'company-card__logo--pro-p' },
+  { src: parkSecureLogo, className: 'company-card__logo--park-secure' },
+] as const;
+---
+
+<BaseLayout
+  title={homeContent.meta.title}
+  description={homeContent.meta.description}
+  navigation={homeContent.navigation}
+>
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="shell hero__grid">
+      <div class="hero__content">
+        <p class="eyebrow eyebrow--light">{homeContent.hero.eyebrow}</p>
+        <h1 id="hero-title">{homeContent.hero.title}</h1>
+        <p class="hero__description">{homeContent.hero.description}</p>
+        <div class="hero__actions">
+          <a class="button button--light" href="#site-assessment">Request a Site Assessment</a>
+          <a class="text-link text-link--light" href="#solutions">
+            Explore Our Solutions <span aria-hidden="true">&#8595;</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <Image
+          src={parkingLot}
+          alt={homeContent.hero.visualAlt}
+          widths={[480, 720, 960]}
+          sizes="(max-width: 760px) calc(100vw - 1.25rem), 430px"
+          format="webp"
+          loading="eager"
+          decoding="async"
+          fetchpriority="high"
+        />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="about" aria-labelledby="about-title">
+    <div class="shell introduction-grid">
+      <SectionHeading
+        eyebrow={homeContent.introduction.eyebrow}
+        title={homeContent.introduction.title}
+        headingId="about-title"
+      />
+      <div class="introduction-copy">
+        <p>{homeContent.introduction.description}</p>
+        <div class="operating-line" aria-label="Parking operation areas">
+          {homeContent.introduction.operatingAreas.map((area, index) => (
+            <>
+              <span>{area}</span>
+              {index < homeContent.introduction.operatingAreas.length - 1 && <i aria-hidden="true"></i>}
+            </>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="companies" aria-labelledby="companies-title">
+    <div class="shell">
+      <SectionHeading
+        eyebrow="Our companies"
+        title="Our operating companies"
+        description={homeContent.companiesIntroduction}
+        headingId="companies-title"
+      />
+      <div class="company-grid">
+        {homeContent.companies.map((company, index) => (
+          <article class="company-card">
+            <div class="company-card__index" aria-hidden="true">0{index + 1}</div>
+            <div class:list={['company-card__logo', companyLogos[index].className]}>
+              <Image
+                src={companyLogos[index].src}
+                alt=""
+                widths={[160, 240, 320]}
+                sizes="(max-width: 760px) 55vw, 240px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <p class="company-card__short-name">{company.shortName}</p>
+            <h3>{company.legalName}</h3>
+            <p>{company.description}</p>
+            <span class="company-card__label">Pro Parking Group operating company</span>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="solutions" aria-labelledby="solutions-title">
+    <div class="shell">
+      <SectionHeading
+        eyebrow="Solutions"
+        title="Parking solutions for property operations"
+        description="Our services cover daily parking operations, payment channels, equipment, monitoring, reporting, and technical planning."
+        headingId="solutions-title"
+      />
+      <div class="solution-list">
+        {homeContent.solutions.map((solution, index) => (
+          <article class="solution-item">
+            <span class="solution-item__index" aria-hidden="true">0{index + 1}</span>
+            <h3>{solution.title}</h3>
+            <p>{solution.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--paper" id="industries" aria-labelledby="industries-title">
+    <div class="shell industries-grid">
+      <SectionHeading
+        eyebrow="Property types"
+        title="Parking requirements vary by property type."
+        description="Traffic patterns, customer expectations, operating hours, payment behavior, and staffing needs differ across properties. A site assessment begins with these operating conditions."
+        headingId="industries-title"
+      />
+      <ul class="industry-list" aria-label="Property types with different parking requirements">
+        {homeContent.industries.map((industry, index) => (
+          <li><span aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{industry}</li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {hasApprovedPortfolioContent && (
+    <section class="section" id="portfolio" aria-labelledby="portfolio-title">
+      <div class="shell">
+        <SectionHeading
+          eyebrow="Portfolio"
+          title="Clients, managed properties, and projects"
+          description="Approved examples of parking operations and project work."
+          headingId="portfolio-title"
+        />
+        <div class="portfolio-grid">
+          {homeContent.portfolio.items.map((item) => (
+            <article>
+              <p class="eyebrow">{item.type}</p>
+              <h3>{item.name}</h3>
+              <p>{item.summary}</p>
+              <p>{item.operatingCompany}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section section--muted" aria-labelledby="journeys-title">
+    <div class="shell">
+      <SectionHeading
+        eyebrow="Support and careers"
+        title="Find the right next step."
+        description="Parking concerns and job opportunities remain separate from property-owner inquiries."
+        headingId="journeys-title"
+      />
+      <div class="journey-grid">
+        <article class="journey-card" id="support">
+          <p class="eyebrow">{homeContent.journeys.support.eyebrow}</p>
+          <h3>{homeContent.journeys.support.title}</h3>
+          <p>{homeContent.journeys.support.description}</p>
+          <p class="journey-card__status">{homeContent.journeys.support.status}</p>
+        </article>
+        <article class="journey-card" id="careers">
+          <p class="eyebrow">{homeContent.journeys.careers.eyebrow}</p>
+          <h3>{homeContent.journeys.careers.title}</h3>
+          <p>{homeContent.journeys.careers.description}</p>
+          <p class="journey-card__status">{homeContent.journeys.careers.status}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section assessment" id="site-assessment" aria-labelledby="assessment-title">
+    <div class="shell assessment__grid">
+      <div>
+        <p class="eyebrow eyebrow--light">{homeContent.assessment.eyebrow}</p>
+        <h2 id="assessment-title">{homeContent.assessment.title}</h2>
+      </div>
+      <div class="assessment__content">
+        <p>{homeContent.assessment.description}</p>
+        <a class="button button--light" href="#contact-intent">Request a Site Assessment</a>
+        <p class="assessment__status" id="contact-intent">
+          <span class="status-dot status-dot--light" aria-hidden="true"></span>
+          {homeContent.assessment.status}
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
