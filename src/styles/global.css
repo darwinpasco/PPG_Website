@@ -1354,6 +1354,102 @@ h3 {
   text-underline-offset: 0.25em;
 }
 
+.introduction-link {
+  margin-top: 1.75rem;
+}
+
+.about-hero__content {
+  max-width: 60rem;
+}
+
+.about-solution-list,
+.about-assessment-grid {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.about-solution-list {
+  border-top: 1px solid var(--color-line);
+}
+
+.about-solution-list li {
+  display: grid;
+  grid-template-columns: 4rem minmax(0, 1fr);
+  gap: 1.5rem;
+  padding-block: 1.75rem;
+  border-bottom: 1px solid var(--color-line);
+}
+
+.about-solution-list__index,
+.about-assessment-grid__index {
+  color: var(--color-signal-dark);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.about-solution-list h3 {
+  max-width: 32ch;
+  margin-bottom: 0.75rem;
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
+}
+
+.about-solution-list h3 a {
+  text-decoration-color: transparent;
+  text-underline-offset: 0.2em;
+}
+
+.about-solution-list h3 a:hover {
+  color: var(--color-green-800);
+  text-decoration-color: var(--color-signal-dark);
+}
+
+.about-solution-list p {
+  max-width: 48rem;
+  margin-bottom: 0;
+  color: var(--color-ink-soft);
+}
+
+.about-section-link {
+  margin-top: 2rem;
+}
+
+.about-assessment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--color-line);
+  border-left: 1px solid var(--color-line);
+}
+
+.about-assessment-grid li {
+  min-height: 18rem;
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  border-right: 1px solid var(--color-line);
+  border-bottom: 1px solid var(--color-line);
+  background: var(--color-white);
+}
+
+.about-assessment-grid__index {
+  display: block;
+  margin-bottom: 2.5rem;
+}
+
+.about-assessment-grid h3 {
+  max-width: 20ch;
+  margin-bottom: 1rem;
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+}
+
+.about-assessment-grid p {
+  max-width: 34rem;
+  margin-bottom: 0;
+  color: var(--color-ink-soft);
+}
+
+.about-industries .text-link {
+  margin-top: 1.5rem;
+}
+
 @media (max-width: 1050px) {
   .desktop-nav,
   .header-cta {
@@ -1440,7 +1536,8 @@ h3 {
   .solutions-card-grid,
   .equipment-grid,
   .company-profile-grid,
-  .industry-overview-grid {
+  .industry-overview-grid,
+  .about-assessment-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
@@ -1491,8 +1588,18 @@ h3 {
   .company-solution-list,
   .industry-overview-grid,
   .industry-assessment-list,
-  .industry-service-list {
+  .industry-service-list,
+  .about-assessment-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-solution-list li {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+    gap: 0.75rem;
+  }
+
+  .about-assessment-grid li {
+    min-height: auto;
   }
 
   .industry-overview-card {

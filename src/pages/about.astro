@@ -1,0 +1,176 @@
+---
+import { Image } from 'astro:assets';
+import Breadcrumbs from '../components/Breadcrumbs.astro';
+import SiteAssessmentCta from '../components/SiteAssessmentCta.astro';
+import { companies, companiesOverview } from '../data/companies';
+import { homeContent } from '../data/home';
+import { solutions } from '../data/solutions';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const assessmentAreas = [
+  {
+    title: 'Site and traffic',
+    description:
+      'Review vehicle demand, arrival and departure patterns, entry and exit lanes, internal circulation, and operating hours.',
+  },
+  {
+    title: 'Users and access',
+    description:
+      'Identify customer, tenant, employee, resident, visitor, contractor, delivery, and service-vehicle requirements where they apply.',
+  },
+  {
+    title: 'Payments and parking rules',
+    description:
+      'Define parking rates, validation rules, accepted payment channels, statutory benefits, exceptions, and customer instructions.',
+  },
+  {
+    title: 'Systems and equipment',
+    description:
+      'Determine the access devices, payment equipment, vehicle-identification equipment, connectivity, power, placement, and maintenance access required by the site.',
+  },
+  {
+    title: 'Staffing and customer assistance',
+    description:
+      'Define operating roles, coverage periods, customer-assistance points, escalation procedures, and continuity arrangements.',
+  },
+  {
+    title: 'Monitoring and reporting',
+    description:
+      'Identify the operating, payment, equipment, incident, and management information required for oversight of the parking facility.',
+  },
+] as const;
+
+const meta = {
+  title: 'About Pro Parking Group | Parking Management and Technology',
+  description:
+    'Learn how Pro Parking Group assesses property requirements and provides parking operations, payments, systems, equipment, monitoring, reporting, and technical services.',
+} as const;
+---
+
+<BaseLayout title={meta.title} description={meta.description} navigation={homeContent.navigation}>
+  <section class="page-hero about-hero" aria-labelledby="about-page-title">
+    <div class="shell">
+      <Breadcrumbs items={[{ label: 'Home', href: '/' }, { label: 'About' }]} />
+      <div class="about-hero__content">
+        <p class="eyebrow eyebrow--light">Pro Parking Group</p>
+        <h1 id="about-page-title">About Pro Parking Group</h1>
+        <p class="page-hero__introduction">
+          Pro Parking Group provides parking management, payment, systems, equipment, monitoring, reporting,
+          and technical services for property owners.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section about-solutions" aria-labelledby="about-solutions-title">
+    <div class="shell">
+      <div class="content-heading">
+        <p class="eyebrow">Parking services</p>
+        <h2 id="about-solutions-title">What Pro Parking Group provides</h2>
+        <p>
+          Parking services are defined around the property’s traffic, users, operating hours, payment
+          requirements, equipment, staffing, customer assistance, and reporting needs.
+        </p>
+      </div>
+
+      <ol class="about-solution-list">
+        {solutions.map((solution, index) => (
+          <li>
+            <span class="about-solution-list__index" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <div>
+              <h3><a href={`/solutions/${solution.slug}/`}>{solution.name}</a></h3>
+              <p>{solution.shortDescription}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+
+      <a class="text-link about-section-link" href="/solutions/">
+        View all parking solutions <span aria-hidden="true">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section section--paper about-assessment" aria-labelledby="about-assessment-title">
+    <div class="shell">
+      <div class="content-heading">
+        <p class="eyebrow">Site assessment</p>
+        <h2 id="about-assessment-title">How property requirements are assessed</h2>
+        <p>A site assessment identifies the operating conditions, systems, and support required for a parking facility.</p>
+      </div>
+
+      <ol class="about-assessment-grid">
+        {assessmentAreas.map((area, index) => (
+          <li>
+            <span class="about-assessment-grid__index" aria-hidden="true">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3>{area.title}</h3>
+            <p>{area.description}</p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  <section class="section about-companies" aria-labelledby="about-companies-title">
+    <div class="shell">
+      <div class="content-heading">
+        <p class="eyebrow">Company profiles</p>
+        <h2 id="about-companies-title">Our operating companies</h2>
+        <p>{companiesOverview.introduction}</p>
+      </div>
+
+      <div class="company-profile-grid">
+        {companies.map((company) => (
+          <article class="company-profile-card">
+            <div class:list={['company-profile-card__logo', `company-logo--${company.slug}`]}>
+              <Image
+                src={company.logo}
+                alt=""
+                widths={[160, 240, 320]}
+                sizes="(max-width: 760px) 55vw, 240px"
+                format="webp"
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <p class="company-profile-card__short-name">{company.shortName}</p>
+            <h3>{company.legalName}</h3>
+            <p>{company.overviewDescription}</p>
+            <a class="company-profile-card__link" href={`/companies/${company.slug}/`}>
+              View the {company.shortName} profile <span aria-hidden="true">&#8594;</span>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <a class="text-link about-section-link" href="/companies/">
+        View our operating companies <span aria-hidden="true">&#8594;</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="section section--muted about-industries" aria-labelledby="about-industries-title">
+    <div class="shell solutions-fit__grid">
+      <div>
+        <p class="eyebrow">Property contexts</p>
+        <h2 id="about-industries-title">Parking requirements by property type</h2>
+      </div>
+      <div>
+        <p>
+          Shopping malls, offices, hotels, residential developments, healthcare facilities, transport terminals,
+          open parking facilities, and event destinations have different traffic, access, payment, staffing, and
+          support requirements.
+        </p>
+        <a class="text-link" href="/industries/">
+          View parking requirements by property type <span aria-hidden="true">&#8594;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <SiteAssessmentCta />
+</BaseLayout>
